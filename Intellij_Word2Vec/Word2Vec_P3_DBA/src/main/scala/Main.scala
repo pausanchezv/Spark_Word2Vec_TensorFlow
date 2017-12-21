@@ -1,5 +1,4 @@
 import org.apache.spark.{SparkConf, SparkContext}
-import org.apache.spark.sql.SparkSession
 import org.apache.spark.mllib.feature.{Word2Vec, Word2VecModel}
 import java.io._
 
@@ -10,14 +9,13 @@ object Main {
       */
     val conf: SparkConf = new SparkConf().setAppName("Pràctica 3 DBA").setMaster("local[*]")
     val sc = new SparkContext(conf)
-    val spark: SparkSession = SparkSession.builder.getOrCreate()
     sc.setLogLevel("WARN")
 
     def main(args: Array[String]): Unit = {
 
 
         // es llegeix el fitxer
-        val quijote = sc.textFile("../../files/clean_quijote.txt")
+        val quijote = sc.textFile("../../files/quijote/clean_quijote.txt")
 
         // s'obtenen els tokens (paraules de cada paràgraf)
         val tokens = quijote.map(x => x.split("""\W+"""))
@@ -94,7 +92,7 @@ object Main {
 
         //println(stringToTensorflowFile)
 
-        new PrintWriter("../..//files/quijote_to_tensorflow.tsv") {
+        new PrintWriter("../../files/quijote/quijote_to_tensorflow.tsv") {
             write(stringToTensorflowFile)
             close()
         }

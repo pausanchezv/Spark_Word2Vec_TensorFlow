@@ -9,7 +9,7 @@ object CleanText {
     // es tenen en compte les paraules buides ja que no té sentit comparar els paràgrafs per exemple per
     // articles, determinants o pronoms febles
     var stopWords: Set[String] = Set()
-    val stopwordsFile = "../files/stop_words.txt"
+    val stopwordsFile = "../files/stop_words/stop_words.txt"
     
     for (line <- Source.fromFile(stopwordsFile).getLines) {
         stopWords += line
@@ -24,13 +24,13 @@ object CleanText {
     def main(args: Array[String]): Unit = {
 
         // s'obtenen les linies i es netegen de caràcters extranys i accents
-        var lines = Source.fromFile("../files/raw_quijote.txt").getLines.toArray.map(x => filterStopWords(x)).map(x => cleanStrings(x))
+        var lines = Source.fromFile("../files/quijote/raw_quijote.txt").getLines.toArray.map(x => filterStopWords(x)).map(x => cleanStrings(x))
 
         // amb les línies es construeixen els paràgrafs
         val text = constructParagraphs(lines)
 
         // es construeix un nou fitxer on cada línia representa un paràgraf net d'accents i símbols
-        new PrintWriter("../files/clean_quijote.txt", "UTF-8") {
+        new PrintWriter("../files/quijote/clean_quijote.txt", "UTF-8") {
             write(text.toString); close()
         }
     }
