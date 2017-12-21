@@ -4,6 +4,6 @@ echo "Netejant els textos.."
 scala CleanText
 echo "Eliminant els fitxers de compilació '.class'"
 rm *.class
-echo "Ara el fitxer quijote net és a la ruta: '../files/clean_quijote.txt'"
+echo "Ara el fitxer quijote net és a la ruta: '../files/quijote/clean_quijote.txt'"
 
 

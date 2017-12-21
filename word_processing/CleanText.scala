@@ -15,7 +15,6 @@ object CleanText {
         stopWords += line
     }
         
-
     /**
       * Main
       *
@@ -42,8 +41,13 @@ object CleanText {
       */
     private def filterStopWords(line: String) : String = {
 
+        // s'obté un array de la línia de text
         val arrayLine = line.split(" ")
+
+        // es neteja l'array de paraules buides
         val cleanArrayLine = arrayLine.filterNot(word => stopWords.contains(word.toLowerCase))
+
+        // es torna a reconstruir l'string i es retorna net
         cleanArrayLine.mkString(" ")
 
     }
@@ -56,20 +60,24 @@ object CleanText {
       */
     private def cleanStrings(line: String): String = {
 
+        // es crea una hash de lletres accentuades i les seves substitutions
         val substitutions = Map('á' -> 'a', 'é' -> 'e', 'í' -> 'i', 'ó' -> 'o', 'ú' -> 'u', 'ñ' ->'n')
 
+        // es converteix el text a minúscules
         var replacedLine = line.toLowerCase()
 
+        // s'apliquen les substitucions dels accents
         for (char <- replacedLine) {
             if (substitutions.contains(char)) {
                 replacedLine = replacedLine.replace(char, substitutions(char))
 
             }
         }
+
+        // s'eliminen els caràcters extranys i es retorna la línia
         replacedLine.replaceAll("[^A-Za-z0-9]", " ")
 
     }
-
 
     /**
       * Construeix els paràgrafs a partir de les linies del text
@@ -79,24 +87,30 @@ object CleanText {
       */
     private def constructParagraphs(lines: Array[String]) : String = {
 
+        // es crea l'string del paràgraf. Comença buit.
         var paragraphsArray: String = ""
         var paragraph = ""
 
         for (i <- lines.indices) {
 
+            // es concatena cada línia del paràgraf al nou paràgraf.
             paragraph = paragraph.concat(lines(i)).trim.concat(" ")
 
+            // es comprova que la línia següent pertanyi al mateix paràgraf.
             if (i < lines.length - 1 && lines(i + 1).isEmpty) {
                 if (!paragraph.trim.isEmpty)
                     paragraphsArray = paragraphsArray.concat(paragraph.trim).concat("\n")
                 paragraph = ""
             }
 
+            // es concatena la última línia
             if (i == lines.length - 1) {
                 paragraphsArray = paragraphsArray.concat(lines(i))
             }
 
         }
+
+        // es netegen els dobles espais i es retorna el paràgraf
         paragraphsArray.replaceAll("  ", " ")
     }
 
