@@ -2,6 +2,10 @@ import scala.io.Source
 import java.io._
 
 /**
+  * Pràctica 3 de Bases de Dades Avançades
+  * 
+  * Pau Sanchez i Guillem Rabionet
+  *
   * Objecte de funcions que proporciona utilitats diverses per la pràctica
   */
 object CleanText {

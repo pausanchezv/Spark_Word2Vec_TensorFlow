@@ -2,6 +2,11 @@ import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.mllib.feature.{Word2Vec, Word2VecModel}
 import java.io._
 
+/**
+  * Pràctica 3 de Bases de dades avançades
+  *
+  * Pau Sanchez i Guillem Rabionet
+  */
 object Main {
 
     /**
