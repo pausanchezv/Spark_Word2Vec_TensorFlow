@@ -4,7 +4,7 @@
 		module="notebook_dba$sources"
 		revision="1.0"
 		status="integration"
-		publication="20171221170808"
+		publication="20171222123705"
 	/>
 	<configurations>
 		<conf name="compile" visibility="public" description=""/>
